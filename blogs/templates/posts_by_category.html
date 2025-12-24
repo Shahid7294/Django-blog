@@ -1,0 +1,23 @@
+{% extends 'base-blogs.html' %}
+{% block content %}
+    <!-- featured_post -->
+    <div class="text-uppercase text-warning" style="latter-spacing:2px">Cateogry - {{cateogry}} </div>
+
+    <div class="row mb-2">
+     {% if posts %}
+      {% for post in posts %}
+          <div class="col-md-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <h3>{{ post.title }}</h3>
+                <small class="mb-1 text-muted">{{ post.created_at|timesince }} ago | {{ post.author }}</small>
+                <p class="card-text">{{ post.short_description|truncatewords:30 }}</p>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+      {% else %}
+      <p>No Post Found</p>
+      {% endif %} 
+    </div>
+{% endblock %}
