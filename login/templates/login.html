@@ -1,0 +1,17 @@
+{% extends 'base-blogs.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "login/css/login.css" %}">
+{% endblock %}
+{% block content %}
+<div class="register">
+    <form action="{% url "login" %}" method="POST" class="my-form" >
+    <h2 class="mb-4">Login Form</h2>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-warning mb-1">Sign in</button>
+    <p> <i>is not sign up?</i>  <a href="{% url "register" %}">Sign in</a></p>
+    
+    </form>
+</div>
+{% endblock %}

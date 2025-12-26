@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: large;
 }
 body {
-  padding-bottom: 20px;  /* same as footer height */
+  padding-bottom: 50px;  /* same as footer height */
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
