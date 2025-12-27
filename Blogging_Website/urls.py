@@ -26,6 +26,7 @@ urlpatterns = [
     path('category/',include("blogs.urls")),
     path('register/',include("register.urls")),
     path('user/',include("login.urls")),
+    path('dashboards/',include("dashboards.urls")),
     path('',include("home.urls")),
     path("<slug:slug>/",BlogsView.blogs,name='blogs'),
     path("blogs/search/",BlogsView.search,name='search'),
