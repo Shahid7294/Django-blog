@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from blogs.models import Category
-from blogs.models import Blog
+from blogs.models import Category,Blog
 from django.contrib.auth.decorators import login_required
-from .forms import CategoryForm
+from .forms import CategoryForm,PostForm
+from django.template.defaultfilters import slugify
 # Create your views here.
 @login_required(login_url='login')
 def dashboards(request):
@@ -48,3 +48,56 @@ def delete_category(request,pk):
     categories=Category.objects.get(pk=pk)
     categories.delete()
     return redirect('categories')
+
+
+# post
+
+def posts(request):
+    posts=Blog.objects.all()
+    context={
+        'posts':posts,
+    }
+    return render(request,'posts.html',context)
+
+def add_posts(request):
+    if request.method == "POST":
+        forms=PostForm(request.POST,request.FILES)
+        if forms.is_valid():
+            post=forms.save(commit=False)
+            post.author=request.user
+            # post.save()
+            title=forms.cleaned_data['title']
+            post.slug=slugify(title)
+            post.save()
+            print("form is valid")
+            return redirect('posts')
+        else:
+            print("form is invalid")
+    
+    forms=PostForm()
+    context={
+            'forms':forms,
+        }
+    return render(request,'add_post.html',context)
+
+def edit_post(request,pk):
+    data=Blog.objects.get(pk=pk)
+    if request.method == "POST":
+        forms=PostForm(request.POST,request.FILES,instance=data)
+        if forms.is_valid():
+            post=forms.save()
+            title=forms.cleaned_data['title']
+            post.slug=slugify(title)
+            post.save()
+            return redirect('posts')
+    else:
+        forms=PostForm(instance=data)
+        context={
+            'forms':forms,
+            'data':data
+        }
+        return render(request,'edit_post.html',context)
+def delete_post(request,pk):
+    data=Blog.objects.get(pk=pk)
+    data.delete()
+    return redirect('posts')

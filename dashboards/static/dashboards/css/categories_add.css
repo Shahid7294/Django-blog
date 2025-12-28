@@ -1,0 +1,13 @@
+form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+} 

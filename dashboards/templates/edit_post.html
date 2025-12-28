@@ -1,0 +1,24 @@
+{% extends 'base-blogs.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "dashboards/css/edit_post.css" %}"> 
+{% endblock %}
+{% block content %}
+<div class="row">
+    <!-- left sidebar-->
+    <!-- load the sidebar-->
+    {% include "sidebar.html" %}
+
+    <!-- right sidebar-->
+    <div class="col-md-9">
+        <h2>Edit Post</h2>
+        <div class="post">
+            <form action="{% url "edit_post" data.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{forms.as_p}}
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

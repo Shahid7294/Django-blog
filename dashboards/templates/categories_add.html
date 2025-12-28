@@ -1,5 +1,9 @@
 {% extends 'base-blogs.html' %}
 {% block content %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "dashboards/css/categories_add.css" %}">
+{% endblock %}
 <div class="row">
     <!-- left sidebar-->
     <!-- load the sidebar-->
