@@ -3,6 +3,6 @@
             <a href="{% url "dashboards" %}" class="nav-link text-dark {% if '/dashboards/dashboards/' == request.path %}bg-warning{% endif %}">Dashboards</a>
             <a href="{% url "categories" %}" class="nav-link text-dark {% if '/categories/' in request.path %}bg-warning{% endif %}">Categories</a>
             <a href="{% url "posts" %}" class="nav-link text-dark {% if '/posts/' in request.path %}bg-warning{% endif %}">Posts</a>
-            <a href="" class="nav-link text-dark ">logout</a>
+            <a href="{% url "logout" %}" class="nav-link text-dark ">logout</a>
         </div>
 </div>

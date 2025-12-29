@@ -3,7 +3,7 @@
 <div class="row">
     <!-- left sidebar-->
     <!-- load the sidebar-->
-     {% include "sidebar.html" %}
+    {% include "sidebar.html" %}
   
     <!-- right sidebar-->
     <div class="col-md-9">
@@ -32,9 +32,11 @@
                 <td class="text-center">
                     {% if i.is_featured %} <i class="bi bi-check-circle text-success"></i> {% else %} <i class="bi bi-x-circle text-danger"></i> {% endif %} </td>
                 <td>
+                    {% if i.author == request.user %}
                     <a href="{% url "edit_post" i.id %}"> <i class="bi bi-pencil-square text-success"></i></a>
                     &nbsp;
                     <a href="{% url "delete_post" i.id %}"><i class="bi bi-trash text-danger"></i></a>
+                    {% endif %}
                 </td>
                 </tr>
                 {% endfor %}
